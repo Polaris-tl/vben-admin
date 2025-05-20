@@ -170,6 +170,16 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      {
+        name: 'ModalExample',
+        path: '/examples/modal',
+        component: () => import('#/views/examples/modal/index.vue'),
+        meta: {
+          icon: 'system-uicons:window-content',
+          keepAlive: true,
+          title: $t('examples.modal.title'),
+        },
+      },
     ],
   },
 ];
