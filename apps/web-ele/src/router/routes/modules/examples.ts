@@ -180,6 +180,16 @@ const routes: RouteRecordRaw[] = [
           title: $t('examples.modal.title'),
         },
       },
+      {
+        name: 'DrawerExample',
+        path: '/examples/drawer',
+        component: () => import('#/views/examples/drawer/index.vue'),
+        meta: {
+          icon: 'iconoir:drawer',
+          keepAlive: true,
+          title: $t('examples.drawer.title'),
+        },
+      },
     ],
   },
 ];
