@@ -124,6 +124,20 @@ const ElUpload = defineAsyncComponent(() =>
   ]).then(([res]) => res.ElUpload),
 );
 
+const ElMention = defineAsyncComponent(() =>
+  Promise.all([
+    import('element-plus/es/components/mention/index'),
+    import('element-plus/es/components/mention/style/css'),
+  ]).then(([res]) => res.ElMention),
+);
+
+const ElRate = defineAsyncComponent(() =>
+  Promise.all([
+    import('element-plus/es/components/rate/index'),
+    import('element-plus/es/components/rate/style/css'),
+  ]).then(([res]) => res.ElRate),
+);
+
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
   type: 'input' | 'select',
@@ -170,7 +184,9 @@ export type ComponentType =
   | 'IconPicker'
   | 'Input'
   | 'InputNumber'
+  | 'Mention'
   | 'RadioGroup'
+  | 'Rate'
   | 'Select'
   | 'Space'
   | 'Switch'
@@ -315,6 +331,8 @@ async function initComponentAdapter() {
     },
     TreeSelect: withDefaultPlaceholder(ElTreeSelect, 'select'),
     Upload: ElUpload,
+    Mention: ElMention,
+    Rate: ElRate,
   };
 
   // 将组件注册到全局共享状态中
