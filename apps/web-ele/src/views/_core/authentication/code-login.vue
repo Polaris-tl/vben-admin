@@ -1,30 +1,56 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@vben/common-ui';
-import type { Recordable } from '@vben/types';
+import { ref } from 'vue';
 
-import { computed, ref } from 'vue';
-
-import { AuthenticationCodeLogin, z } from '@vben/common-ui';
 import { $t } from '@vben/locales';
+
+import { ElButton, ElCheckbox } from 'element-plus';
+
+import { useVbenForm, z } from '#/adapter/form';
+import { showCaptcha } from '#/components';
+import { useAuthStore } from '#/store';
 
 defineOptions({ name: 'CodeLogin' });
 
-const loading = ref(false);
 const CODE_LENGTH = 6;
 
-const formSchema = computed((): VbenFormSchema[] => {
-  return [
+const checked = ref(false);
+const authStore = useAuthStore();
+
+async function handleLogin() {
+  authStore.authLogin({
+    captcha: true,
+    password: '123456',
+    selectAccount: 'vben',
+    username: 'vben',
+  });
+  if (!checked.value) {
+    window.$message.error('请先勾选同意用户协议');
+    return;
+  }
+  await formApi.validate();
+  const values = await formApi.getValues();
+  console.log(values);
+}
+
+const [LoginForm, formApi] = useVbenForm({
+  commonConfig: {
+    hideRequiredMark: true,
+    hideLabel: true,
+    wrapperClass: 'w-full',
+  },
+  showDefaultActions: false,
+  schema: [
     {
-      component: 'VbenInput',
+      component: 'Input',
       componentProps: {
-        placeholder: $t('authentication.mobile'),
+        placeholder: '请输入手机号码',
+        style: { height: '40px' },
       },
       fieldName: 'phoneNumber',
-      label: $t('authentication.mobile'),
       rules: z
         .string()
         .min(1, { message: $t('authentication.mobileTip') })
-        .refine((v) => /^\d{11}$/.test(v), {
+        .refine((v) => /^1\d{10}$/.test(v), {
           message: $t('authentication.mobileErrortip'),
         }),
     },
@@ -40,6 +66,10 @@ const formSchema = computed((): VbenFormSchema[] => {
           return text;
         },
         placeholder: $t('authentication.code'),
+        handleSendCode: async () => {
+          const res = await showCaptcha();
+          console.log(res);
+        },
       },
       fieldName: 'code',
       label: $t('authentication.code'),
@@ -47,23 +77,33 @@ const formSchema = computed((): VbenFormSchema[] => {
         message: $t('authentication.codeTip', [CODE_LENGTH]),
       }),
     },
-  ];
+  ],
 });
-/**
- * 异步处理登录操作
- * Asynchronously handle the login process
- * @param values 登录表单数据
- */
-async function handleLogin(values: Recordable<any>) {
-  // eslint-disable-next-line no-console
-  console.log(values);
-}
 </script>
 
 <template>
-  <AuthenticationCodeLogin
-    :form-schema="formSchema"
-    :loading="loading"
-    @submit="handleLogin"
-  />
+  <LoginForm class="w-full" />
+  <div class="w-full">
+    <ElButton
+      type="primary"
+      @click="handleLogin"
+      class="!h-[40px] w-full"
+      :disabled="!checked"
+    >
+      注册并登录
+    </ElButton>
+    <div class="mt-4 flex justify-start text-sm">
+      <ElCheckbox v-model="checked" />
+      <div class="ml-2 flex items-center justify-center">
+        我已阅读并同意
+        <ElButton link class="m-0 p-0" type="primary">
+          《用户使用协议》
+        </ElButton>
+        和
+        <ElButton link class="m-0 p-0" type="primary">
+          《隐私保护协议》
+        </ElButton>
+      </div>
+    </div>
+  </div>
 </template>
