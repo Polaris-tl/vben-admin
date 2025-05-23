@@ -24,18 +24,10 @@ const steps = [
 
 const step = computed(() => store.step);
 const currentStepComponent = computed(() => steps[step.value]);
-
-const nextStep = () => store.nextStep();
-const prevStep = () => store.prevStep();
 </script>
 
 <template>
   <div class="h-full w-full">
     <component :is="currentStepComponent" />
-
-    <div class="controls mt-4 flex justify-between">
-      <button @click="prevStep" :disabled="step === 0">上一步</button>
-      <button v-if="step < steps.length - 1" @click="nextStep">下一步</button>
-    </div>
   </div>
 </template>
