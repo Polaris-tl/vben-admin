@@ -773,6 +773,9 @@ importers:
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
+      vue-hooks-plus:
+        specifier: 2.4.0-alpha.4
+        version: 2.4.0-alpha.4(vue@3.5.13(typescript@5.8.3))
       vue-router:
         specifier: 'catalog:'
         version: 4.5.1(vue@3.5.13(typescript@5.8.3))
@@ -4357,6 +4360,9 @@ packages:
   '@types/json-bigint@1.0.4':
     resolution: {integrity: sha512-ydHooXLbOmxBbubnA7Eh+RpBzuaIiQjh8WGJYQB50JFGFrdxW7JzVlyEV7fAXw0T2sqJ1ysTneJbiyNLqZRAag==}
 
+  '@types/js-cookie@3.0.6':
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
+
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
@@ -4777,6 +4783,9 @@ packages:
 
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+
+  '@vue/devtools-api@7.7.2':
+    resolution: {integrity: sha512-1syn558KhyN+chO5SjlZIwJ8bV/bQ1nOVTG66t2RbG66ZGekyiYNmRO7X9BJCXQqPsFHlnksqvPhce2qpzxFnA==}
 
   '@vue/devtools-api@7.7.5':
     resolution: {integrity: sha512-HYV3tJGARROq5nlVMJh5KKHk7GU8Au3IrrmNNqr978m0edxgpHgYPDoNUGrvEgIbObz09SQezFR3A1EVmB5WZg==}
@@ -9698,6 +9707,10 @@ packages:
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
+  screenfull@5.2.0:
+    resolution: {integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==}
+    engines: {node: '>=0.10.0'}
+
   scroll-into-view-if-needed@2.2.31:
     resolution: {integrity: sha512-dGCXy99wZQivjmjIqihaBQNjryrz5rueJY7eHfTdyWEiR4ttYpsajb14rn9s5d4DY4EcY6+4+U/maARBXJedkA==}
 
@@ -10912,6 +10925,11 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
+
+  vue-hooks-plus@2.4.0-alpha.4:
+    resolution: {integrity: sha512-xCHuYJBCYVktpmjFP/R9wDHs1wXTqc3vxiT01CQ0iKHDTJ/nFbdKmh+UA8WSzaBfa9GDd1sioBaikvmlrojtsA==}
+    peerDependencies:
+      vue: ^3.5.13
 
   vue-i18n@11.1.3:
     resolution: {integrity: sha512-Pcylh9z9S5+CJAqgbRZ3EKxFIBIrtY5YUppU722GIT65+Nukm0TCqiQegZnNLCZkXGthxe0cpqj0AoM51H+6Gw==}
@@ -14067,6 +14085,8 @@ snapshots:
 
   '@types/html-minifier-terser@7.0.2': {}
 
+  '@types/js-cookie@3.0.6': {}
+
   '@types/json-bigint@1.0.4': {}
 
   '@types/json-schema@7.0.15': {}
@@ -14579,6 +14599,10 @@ snapshots:
       he: 1.2.0
 
   '@vue/devtools-api@6.6.4': {}
+
+  '@vue/devtools-api@7.7.2':
+    dependencies:
+      '@vue/devtools-kit': 7.7.6
 
   '@vue/devtools-api@7.7.5':
     dependencies:
@@ -19922,6 +19946,8 @@ snapshots:
   sax@1.4.1:
     optional: true
 
+  screenfull@5.2.0: {}
+
   scroll-into-view-if-needed@2.2.31:
     dependencies:
       compute-scroll-into-view: 1.0.20
@@ -21357,6 +21383,15 @@ snapshots:
       semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
+
+  vue-hooks-plus@2.4.0-alpha.4(vue@3.5.13(typescript@5.8.3)):
+    dependencies:
+      '@types/js-cookie': 3.0.6
+      '@vue/devtools-api': 7.7.2
+      js-cookie: 3.0.5
+      lodash-es: 4.17.21
+      screenfull: 5.2.0
+      vue: 3.5.13(typescript@5.8.3)
 
   vue-i18n@11.1.3(vue@3.5.13(typescript@5.8.3)):
     dependencies:
