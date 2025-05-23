@@ -19,4 +19,21 @@ async function getDeptsApi(data: { hospitalCode: string; id: string }) {
   );
 }
 
-export { getDeptsApi, getHospitalDistrictApi };
+/**
+ * 获取医生号源
+ */
+async function getScheduleApi(data: {
+  deptCode: string;
+  endDate: string;
+  hospitalCode: string;
+  registerLevel: string;
+  startDate: string;
+  subDeptCode: string;
+}) {
+  return requestClient.post<RegisterApi.DoctorSchedule[]>(
+    '/alpha/ihis/register/resource/schedule/day/v1',
+    data,
+  );
+}
+
+export { getDeptsApi, getHospitalDistrictApi, getScheduleApi };

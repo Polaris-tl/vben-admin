@@ -8,6 +8,7 @@ interface RegisterState {
     departmentL1?: RegisterApi.DeptsResponse;
     departmentL2?: Omit<RegisterApi.DeptsResponse, 'children'>;
     district?: RegisterApi.HospitalDistrictResponse;
+    doctor?: RegisterApi.DoctorSchedule;
   };
 }
 
@@ -18,6 +19,7 @@ export const useRegisterStore = defineStore('register', {
       district: undefined, // 院区
       departmentL1: undefined, // 一级科室
       departmentL2: undefined, // 二级科室
+      doctor: undefined,
     },
   }),
   actions: {
@@ -47,5 +49,9 @@ export const useRegisterStore = defineStore('register', {
     setStep2DepartmentL2(v: Omit<RegisterApi.DeptsResponse, 'children'>) {
       set(this.data, 'departmentL2', v);
     },
+    setStep3Doctor(v: RegisterApi.DoctorSchedule) {
+      set(this.data, 'doctor', v);
+    },
   },
+  persist: false,
 });
