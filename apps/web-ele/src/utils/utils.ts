@@ -5,3 +5,7 @@ export function uuidv4(): string {
     return v.toString(16);
   });
 }
+
+export function isProd() {
+  return import.meta.env.MODE === 'production';
+}

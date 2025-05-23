@@ -231,6 +231,7 @@
     "archiver",
     "axios",
     "dotenv",
+    "ihis",
     "isequal",
     "jspm",
     "napi",
