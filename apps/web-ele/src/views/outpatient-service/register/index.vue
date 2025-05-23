@@ -30,7 +30,7 @@ const prevStep = () => store.prevStep();
 </script>
 
 <template>
-  <div class="register-flow">
+  <div class="h-full w-full">
     <component :is="currentStepComponent" />
 
     <div class="controls mt-4 flex justify-between">
@@ -39,10 +39,3 @@ const prevStep = () => store.prevStep();
     </div>
   </div>
 </template>
-
-<style scoped>
-.register-flow {
-  max-width: 600px;
-  margin: 0 auto;
-}
-</style>
