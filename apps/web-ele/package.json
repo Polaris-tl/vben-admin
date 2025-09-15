@@ -45,7 +45,7 @@
     "element-plus": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
-    "vue-hooks-plus": "2.4.0-alpha.4",
+    "vue-hooks-plus": "2.4.1",
     "vue-router": "catalog:"
   },
   "devDependencies": {
